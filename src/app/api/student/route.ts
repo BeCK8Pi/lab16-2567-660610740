@@ -104,6 +104,16 @@ export const DELETE = async (request: NextRequest) => {
   const body = await request.json();
 
   //check if student id exist
+  if(body.studentId.length !== 9){
+    return NextResponse.json(
+      {
+        ok: false,
+        message: "Student ID must contain 9 characters",
+      },
+      { status: 400 }
+    );
+  }
+
   const foundIndex = DB.students.findIndex(
     (std) => std.studentId === body.studentId
   );
