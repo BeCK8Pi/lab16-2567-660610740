@@ -31,9 +31,8 @@ export const GET = async (request: NextRequest) => {
   }
 
   //filter by student id here
-  let filteredId = DB.students;
   if (studentId !== null) {
-    filteredId = filteredId.filter((std) => std.studentId === studentId);
+    filtered = filtered.filter((std) => std.studentId === studentId);
   }
 
   return NextResponse.json({ ok: true, students: filtered });
@@ -102,7 +101,6 @@ export const PUT = async (request: NextRequest) => {
 
 export const DELETE = async (request: NextRequest) => {
   //get body and validate it
-  const studentId = request.nextUrl.searchParams.get("studentId");
   const body = await request.json();
 
   //check if student id exist
